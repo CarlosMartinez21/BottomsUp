@@ -1,34 +1,40 @@
 import { Fragment, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/martini.svg";
-import {
-  LogoContainer,
-  NavLink,
-  NavLinks,
-  NavigationContainer,
-  WebsiteName,
-  BrandContainer,
-} from "./navigation.styles";
+
+import { LogoContainer, NavLinks, WebsiteName } from "./navigation.styles.jsx";
+
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 const Navigation = () => {
   return (
-    <Fragment>
-      <NavigationContainer>
-        <LogoContainer to="/">
-          <BrandContainer>
-            <Logo className="logo"></Logo>
-            <WebsiteName>Bottoms Up</WebsiteName>
-          </BrandContainer>
-        </LogoContainer>
-        <NavLinks>
-          <NavLink to="ingredients">By Ingredients</NavLink>
-          <NavLink to="name">By Name</NavLink>
-          <NavLink to="name">Random Drinks</NavLink>
-          <NavLink to="sign in">Sign In</NavLink>
-        </NavLinks>
-      </NavigationContainer>
+    <div>
+      <div>
+        <Navbar bg="dark">
+          <LogoContainer>
+            <Navbar.Brand className="logo" href="/">
+              <Logo />
+              <WebsiteName>Bottoms Up</WebsiteName>
+            </Navbar.Brand>
+          </LogoContainer>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <NavLinks>
+                <Nav.Link href="ingredients">By Ingredients</Nav.Link>
+                <Nav.Link href="name">By Name</Nav.Link>
+                <Nav.Link href="random">Random</Nav.Link>
+                <Nav.Link href="signin">Sign In</Nav.Link>
+              </NavLinks>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
       <Outlet />
-    </Fragment>
+    </div>
   );
 };
 
